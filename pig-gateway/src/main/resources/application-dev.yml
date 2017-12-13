@@ -1,0 +1,75 @@
+spring:
+  redis:
+    # database: 11
+    host: 192.168.1.122    # Redis服务器地址 - 测试服
+    port: 6381   # Redis服务器连接端口
+    password:    # Redis服务器连接密码（默认为空）
+  http:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+  rabbitmq:
+    host: 123.206.94.20
+    port: 5672
+    username: lengleng
+    password: lengleng
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  routes:
+    auth-service:
+      path: /auth/**
+      serviceId: pig-auth-service
+      stripPrefix: true
+      sensitiveHeaders:
+    pig-admin-service:
+      path: /admin/**
+      serviceId: pig-admin-service
+      stripPrefix: true
+      sensitiveHeaders:
+  ratelimit:
+    key-prefix: pig-ratelimite
+    enabled: true
+    repository: REDIS
+    behind-proxy: true
+    policies:
+      pig-admin-service:
+        limit: 100
+        quota: 1
+        refresh-interval: 3
+
+security:
+  sessions: stateless
+  oauth2:
+    resource:
+      loadBalanced: true
+      user-info-uri: http://pig-auth-service/user
+      prefer-token-info: false
+      service-id: pig-gateway
+filter:
+  urls:
+    anon:
+      - /auth/**
+      - /auth/**
+
+server:
+  port: 6011
+
+#logging:
+#  config: classpath:logback.xml
+

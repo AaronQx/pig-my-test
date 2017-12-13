@@ -1,0 +1,18 @@
+server:
+  port: 3011
+
+pig:
+  auth:
+    clientId: pig
+    clientSecret: pig
+    scope: server
+
+spring:
+  redis:
+    # database: 11
+    host: 192.168.1.122    # Redis服务器地址 - 测试服
+    port: 6381   # Redis服务器连接端口
+    password:    # Redis服务器连接密码（默认为空）
+
+logging:
+  config: classpath:logback.xml

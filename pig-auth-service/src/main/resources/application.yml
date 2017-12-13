@@ -1,0 +1,13 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://pig:gip6666@localhost:1003/eureka
+
+spring:
+  application:
+    name: pig-auth-service
+  profiles:
+    active: dev
+

@@ -1,0 +1,23 @@
+server:
+  port: 1003
+
+spring:
+  application:
+    name: pig-eureka-server
+
+security:
+  basic:
+    enabled: true # 启用身份认证
+  user:
+    name: pig # 定义用户名
+    password: gip6666 # 定义密码
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    serviceUrl:
+          defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    hostname: localhost
+

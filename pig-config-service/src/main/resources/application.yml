@@ -1,0 +1,21 @@
+server:
+  port: 4010
+
+spring:
+  application:
+    name: pig-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://www.gitee.wang/a/pig-config.git
+    bus:
+      trace:
+        enabled: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://pig:gip6666@localhost:1003/eureka
